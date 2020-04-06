@@ -22,5 +22,7 @@ Route.get("/", () => {
   };
 });
 
-Route.post("/login", "AuthController.login").middleware(["guest"]);
-Route.post("/refresh", "AuthController.refresh");
+Route.post("login", "AuthController.login").middleware(["guest"])
+Route.post("refresh", "AuthController.refresh")
+Route.post("logout", "AuthController.logout").middleware(["auth"])
+Route.post("me", "AuthController.getMe").middleware(["auth"])

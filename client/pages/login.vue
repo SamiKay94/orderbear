@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  middleware: 'guest',
   data() {
     return {
       email: 'samkamara94@gmail.com',

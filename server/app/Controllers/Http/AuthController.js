@@ -1,6 +1,7 @@
 "use strict";
 
 const User = use("App/Models/User");
+const DB = use("Database");
 const Logger = use("Logger");
 
 class AuthController {
@@ -14,6 +15,7 @@ class AuthController {
         const tokens = await auth.withRefreshToken().generate(user);
         response.cookie("refreshToken", tokens.refreshToken, {
           httpOnly: true,
+          maxAge: 60 * 60 * 24 * 7,
         });
         return response.status(200).send(tokens.token);
       }
@@ -39,7 +41,23 @@ class AuthController {
     }
   }
 
-  async logout({ request, response, auth }) {}
+  async logout({ request, response, auth }) {
+    response.clearCookie("refreshToken");
+    const user = await auth.getUser();
+    await DB.from("tokens").where("user_id", user.id).delete();
+    return response.status(200).send("Successfully logged out");
+  }
+
+  async getMe({ request, response, auth }) {
+    try {
+      const user = await auth.getUser();
+      return response.status(200).json({
+        user,
+      });
+    } catch (err) {
+      Logger.error(err);
+    }
+  }
 }
 
 module.exports = AuthController;

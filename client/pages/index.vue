@@ -30,6 +30,7 @@
         No other internal dependency
       </card>
     </div>
+    <b-button type="is-danger" expanded @click="logout">Logout</b-button>
   </section>
 </template>
 
@@ -41,6 +42,12 @@ export default {
 
   components: {
     Card
+  },
+
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout')
+    }
   }
 }
 </script>

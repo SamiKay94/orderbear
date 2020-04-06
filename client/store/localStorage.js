@@ -6,8 +6,7 @@ export const mutations = {
   LOGIN(state) {
     state.auth = true
   },
-  LOGOUT(state, rootState) {
+  LOGOUT(state) {
     state.auth = false
-    rootState.auth.user = null
   }
 }

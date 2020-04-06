@@ -5,8 +5,7 @@ export default {
    */
   head: {
     title: process.env.npm_package_name || '',
-    meta: [
-      {
+    meta: [{
         charset: 'utf-8'
       },
       {
@@ -19,13 +18,11 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/favicon.ico'
-      }
-    ]
+    link: [{
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico'
+    }]
   },
   /*
    ** Customize the progress-bar color
@@ -40,7 +37,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/axios', { src: '~/plugins/nuxt-client-init.js', ssr: false }],
+  plugins: ['~/plugins/axios', {
+    src: '~/plugins/nuxt-client-init.js',
+    ssr: false
+  }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -60,7 +60,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    'nuxt-vuex-localstorage'
   ],
   /*
    ** Axios module configuration

@@ -72,7 +72,8 @@ module.exports = {
     uid: 'email',
     password: 'password',
     options: {
-      secret: Env.get('SERVER_KEY')
+      secret: Env.get('SERVER_KEY'),
+      expiresIn: 60 * 15
     }
   },
 
